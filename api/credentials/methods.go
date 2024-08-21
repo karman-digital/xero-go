@@ -78,9 +78,6 @@ func (c *Credentials) RefreshToken() error {
 	return nil
 }
 
-func (c *Credentials) ValidateToken() error {
-	if c.expiresAt.Before(time.Now()) {
-		return c.RefreshToken()
-	}
-	return nil
+func (c *Credentials) AccessTokenValid() bool {
+	return c.expiresAt.Before(time.Now())
 }
