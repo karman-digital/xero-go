@@ -1,23 +1,25 @@
 package contacts
 
 type Contact struct {
-	ContactID                 string    `json:"ContactID"`
-	ContactStatus             string    `json:"ContactStatus"`
+	ContactID                 string    `json:"ContactID,omitempty"`
+	ContactStatus             string    `json:"ContactStatus,omitempty"`
+	ContactNumber             string    `json:"ContactNumber,omitempty"`
+	AccountNumber             string    `json:"AccountNumber,omitempty"`
 	Name                      string    `json:"Name"`
-	FirstName                 string    `json:"FirstName"`
-	LastName                  string    `json:"LastName"`
-	CompanyNumber             string    `json:"CompanyNumber"`
-	EmailAddress              string    `json:"EmailAddress"`
-	BankAccountDetails        string    `json:"BankAccountDetails"`
-	TaxNumber                 string    `json:"TaxNumber"`
-	AccountsReceivableTaxType string    `json:"AccountsReceivableTaxType"`
-	AccountsPayableTaxType    string    `json:"AccountsPayableTaxType"`
-	Addresses                 []Address `json:"Addresses"`
-	Phones                    []Phone   `json:"Phones"`
-	UpdatedDateUTC            string    `json:"UpdatedDateUTC"`
-	IsSupplier                bool      `json:"IsSupplier"`
-	IsCustomer                bool      `json:"IsCustomer"`
-	DefaultCurrency           string    `json:"DefaultCurrency"`
+	FirstName                 string    `json:"FirstName,omitempty"`
+	LastName                  string    `json:"LastName,omitempty"`
+	CompanyNumber             string    `json:"CompanyNumber,omitempty"`
+	EmailAddress              string    `json:"EmailAddress,omitempty"`
+	BankAccountDetails        string    `json:"BankAccountDetails,omitempty"`
+	TaxNumber                 string    `json:"TaxNumber,omitempty"`
+	AccountsReceivableTaxType string    `json:"AccountsReceivableTaxType,omitempty"`
+	AccountsPayableTaxType    string    `json:"AccountsPayableTaxType,omitempty"`
+	Addresses                 []Address `json:"Addresses,omitempty"`
+	Phones                    []Phone   `json:"Phones,omitempty"`
+	UpdatedDateUTC            string    `json:"UpdatedDateUTC,omitempty"`
+	IsSupplier                bool      `json:"IsSupplier,omitempty"`
+	IsCustomer                bool      `json:"IsCustomer,omitempty"`
+	DefaultCurrency           string    `json:"DefaultCurrency,omitempty"`
 }
 
 type Address struct {
