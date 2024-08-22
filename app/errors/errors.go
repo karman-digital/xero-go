@@ -1,3 +1,3 @@
-package errors
+package xeroerrors
 
 var ErrNotFound = "not found"
