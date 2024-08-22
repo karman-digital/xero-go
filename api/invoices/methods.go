@@ -2,7 +2,7 @@ package invoices
 
 import invoicesmodels "github.com/karman-digital/xero-go/models/invoices"
 
-func (s *InvoicesService) CreateInvoice(body invoicesmodels.Invoice) (invoicesmodels.Invoice, error) {
+func (s *InvoicesService) CreateInvoice(body invoicesmodels.Invoices) (invoicesmodels.Invoice, error) {
 	return invoicesmodels.Invoice{}, nil
 }
 

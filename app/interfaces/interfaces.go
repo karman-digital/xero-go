@@ -6,7 +6,7 @@ import (
 )
 
 type Invoices interface {
-	CreateInvoice(body invoicesmodels.Invoice) (invoicesmodels.Invoice, error)
+	CreateInvoice(body invoicesmodels.Invoices) (invoicesmodels.Invoice, error)
 }
 
 type Contacts interface {
