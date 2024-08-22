@@ -1,3 +1,5 @@
 package xeroerrors
 
-var ErrNotFound = "not found"
+import "errors"
+
+var ErrNotFound = errors.New("not found")
