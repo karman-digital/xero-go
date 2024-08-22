@@ -7,6 +7,7 @@ import (
 
 type ApiClient struct {
 	interfaces.Invoices
+	interfaces.Contacts
 }
 
 type Xero struct {
