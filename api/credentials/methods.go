@@ -18,7 +18,7 @@ func GenerateTokenPair(code, clientId, clientSecret, redirectUri string) (oauthm
 	data.Set("grant_type", "authorization_code")
 	data.Set("code", code)
 	data.Set("redirect_uri", redirectUri)
-	req, err := http.NewRequest(http.MethodPost, "https://api.hubapi.com/oauth/v1/token", strings.NewReader(data.Encode()))
+	req, err := http.NewRequest(http.MethodPost, "https://identity.xero.com/connect/token", strings.NewReader(data.Encode()))
 	if err != nil {
 		return respBody, err
 	}
