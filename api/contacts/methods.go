@@ -1,11 +1,11 @@
 package contacts
 
-import invoicesmodels "github.com/karman-digital/xero-go/models/invoices"
+import contactsmodels "github.com/karman-digital/xero-go/models/contacts"
 
-func (s *ContactsService) CreateContact(body invoicesmodels.Contact) (invoicesmodels.Contact, error) {
-	return invoicesmodels.Contact{}, nil
+func (s *ContactsService) CreateContact(body contactsmodels.Contact) (contactsmodels.Contact, error) {
+	return contactsmodels.Contact{}, nil
 }
 
-func (s *ContactsService) GetContact(id string) (invoicesmodels.Contact, error) {
-	return invoicesmodels.Contact{}, nil
+func (s *ContactsService) GetContact(id string) (contactsmodels.Contact, error) {
+	return contactsmodels.Contact{}, nil
 }

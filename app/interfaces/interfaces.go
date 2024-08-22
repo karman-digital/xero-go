@@ -1,14 +1,17 @@
 package interfaces
 
-import invoicesmodels "github.com/karman-digital/xero-go/models/invoices"
+import (
+	contactsmodels "github.com/karman-digital/xero-go/models/contacts"
+	invoicesmodels "github.com/karman-digital/xero-go/models/invoices"
+)
 
 type Invoices interface {
 	CreateInvoice(body invoicesmodels.Invoice) (invoicesmodels.Invoice, error)
 }
 
 type Contacts interface {
-	CreateContact(body invoicesmodels.Contact) (invoicesmodels.Contact, error)
-	GetContact(id string) (invoicesmodels.Contact, error)
+	CreateContact(body contactsmodels.Contact) (contactsmodels.Contact, error)
+	GetContact(id string) (contactsmodels.Contact, error)
 }
 
 type Validator interface {
