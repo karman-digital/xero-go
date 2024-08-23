@@ -1,4 +1,4 @@
-package contacts
+package contactsmodels
 
 type Contact struct {
 	ContactID                 string          `json:"ContactID,omitempty"`

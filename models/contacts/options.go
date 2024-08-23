@@ -1,4 +1,4 @@
-package contacts
+package contactsmodels
 
 import "time"
 

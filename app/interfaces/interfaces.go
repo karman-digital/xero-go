@@ -6,12 +6,12 @@ import (
 )
 
 type Invoices interface {
-	CreateInvoice(body invoicesmodels.Invoices) (invoicesmodels.Invoice, error)
+	CreateInvoice(body invoicesmodels.Invoices) (invoicesmodels.Invoices, error)
 }
 
 type Contacts interface {
-	CreateContact(body contactsmodels.Contact) (contactsmodels.Contact, error)
-	GetContact(id string) (contactsmodels.Contact, error)
+	CreateContact(body contactsmodels.Contacts) (contactsmodels.Contacts, error)
+	GetContact(id string) (contactsmodels.Contacts, error)
 }
 
 type Validator interface {
