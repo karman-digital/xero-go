@@ -44,7 +44,7 @@ func handleBasicResponseCode(resp *http.Response) (rawBody []byte, err error) {
 		if resp.StatusCode == 404 {
 			return rawBody, xeroerrors.New(xeroerrors.ErrNotFound, "resource not found")
 		}
-		return rawBody, xeroerrors.New(xeroerrors.ErrApiError, "error creating contact")
+		return rawBody, xeroerrors.New(xeroerrors.ErrApiError, fmt.Sprintf("error body: %s", string(rawBody)))
 	}
 	return rawBody, nil
 }
