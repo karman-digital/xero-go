@@ -14,6 +14,7 @@ func (c *Credentials) SendRequest(method, path string, body []byte) (*http.Respo
 	}
 	req.Header.Set("Content-Type", "application/json")
 	req.Header.Set("Authorization", fmt.Sprintf("Bearer %s", c.accesstoken))
+	req.Header.Set("Xero-tenant-id", c.organisationId)
 	resp, err := c.client.Do(req)
 	if err != nil {
 		return nil, fmt.Errorf("error making request: %s", err)

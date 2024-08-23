@@ -12,6 +12,7 @@ func InitXero() *Xero {
 
 func (x *Xero) InitClient(creds *credentials.Credentials) {
 	x.Credentials = creds
+	x.ApiClient = NewApiClient(creds)
 }
 
 func NewApiClient(creds *credentials.Credentials) ApiClient {
