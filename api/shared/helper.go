@@ -18,7 +18,7 @@ func HandleContactResponse(resp http.Response) (objResp contactsmodels.Contacts,
 	}
 	err = json.Unmarshal(rawBody, &objResp)
 	if err != nil {
-		return contactsmodels.Contacts{}, xeroerrors.New(xeroerrors.ErrInternal, fmt.Sprintf("error unmarshalling response body: %s", err))
+		return contactsmodels.Contacts{}, err
 	}
 	return objResp, nil
 }
@@ -30,7 +30,7 @@ func HandleInvoiceResponse(resp http.Response) (objResp invoicesmodels.Invoices,
 	}
 	err = json.Unmarshal(rawBody, &objResp)
 	if err != nil {
-		return invoicesmodels.Invoices{}, xeroerrors.New(xeroerrors.ErrInternal, fmt.Sprintf("error unmarshalling response body: %s", err))
+		return invoicesmodels.Invoices{}, err
 	}
 	return objResp, nil
 }
