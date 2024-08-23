@@ -53,7 +53,7 @@ func (c *Credentials) RefreshToken() error {
 	data := url.Values{}
 	data.Set("grant_type", "refresh_token")
 	data.Set("refresh_token", c.refreshtoken)
-	req, err := http.NewRequest(http.MethodPost, "https://api.hubapi.com/oauth/v1/token", strings.NewReader(data.Encode()))
+	req, err := http.NewRequest(http.MethodPost, "https://identity.xero.com/connect/token", strings.NewReader(data.Encode()))
 	if err != nil {
 		return err
 	}
