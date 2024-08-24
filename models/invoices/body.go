@@ -1,29 +1,31 @@
 package invoicesmodels
 
+import sharedmodels "github.com/karman-digital/xero-go/models/shared"
+
 type Invoice struct {
-	Type            string     `json:"Type"`
-	Contact         Contact    `json:"Contact"`
-	LineItems       []LineItem `json:"LineItems"`
-	Date            *string    `json:"Date,omitempty"`
-	DueDate         *string    `json:"DueDate,omitempty"`
-	DateString      *string    `json:"DateString,omitempty"`
-	DueDateString   *string    `json:"DueDateString,omitempty"`
-	Status          *string    `json:"Status,omitempty"`
-	LineAmountTypes *string    `json:"LineAmountTypes,omitempty"`
-	SubTotal        *string    `json:"SubTotal,omitempty"`
-	TotalTax        *string    `json:"TotalTax,omitempty"`
-	Total           *string    `json:"Total,omitempty"`
-	UpdatedDateUTC  *string    `json:"UpdatedDateUTC,omitempty"`
-	CurrencyCode    *string    `json:"CurrencyCode,omitempty"`
-	InvoiceID       *string    `json:"InvoiceID,omitempty"`
-	InvoiceNumber   *string    `json:"InvoiceNumber,omitempty"`
-	Payments        []Payment  `json:"Payments,omitempty"`
-	AmountDue       *string    `json:"AmountDue,omitempty"`
-	AmountPaid      *string    `json:"AmountPaid,omitempty"`
-	AmountCredited  *string    `json:"AmountCredited,omitempty"`
-	Reference       *string    `json:"Reference,omitempty"`
-	BrandingThemeID *string    `json:"BrandingThemeID,omitempty"`
-	Url             *string    `json:"Url,omitempty"`
+	Type            string                    `json:"Type"`
+	Contact         Contact                   `json:"Contact"`
+	LineItems       []LineItem                `json:"LineItems"`
+	Date            *string                   `json:"Date,omitempty"`
+	DueDate         *string                   `json:"DueDate,omitempty"`
+	DateString      *string                   `json:"DateString,omitempty"`
+	DueDateString   *string                   `json:"DueDateString,omitempty"`
+	Status          *string                   `json:"Status,omitempty"`
+	LineAmountTypes *string                   `json:"LineAmountTypes,omitempty"`
+	SubTotal        *sharedmodels.IntOrString `json:"SubTotal,omitempty"`
+	TotalTax        *sharedmodels.IntOrString `json:"TotalTax,omitempty"`
+	Total           *sharedmodels.IntOrString `json:"Total,omitempty"`
+	UpdatedDateUTC  *string                   `json:"UpdatedDateUTC,omitempty"`
+	CurrencyCode    *string                   `json:"CurrencyCode,omitempty"`
+	InvoiceID       *string                   `json:"InvoiceID,omitempty"`
+	InvoiceNumber   *string                   `json:"InvoiceNumber,omitempty"`
+	Payments        []Payment                 `json:"Payments,omitempty"`
+	AmountDue       *sharedmodels.IntOrString `json:"AmountDue,omitempty"`
+	AmountPaid      *sharedmodels.IntOrString `json:"AmountPaid,omitempty"`
+	AmountCredited  *sharedmodels.IntOrString `json:"AmountCredited,omitempty"`
+	Reference       *string                   `json:"Reference,omitempty"`
+	BrandingThemeID *string                   `json:"BrandingThemeID,omitempty"`
+	Url             *string                   `json:"Url,omitempty"`
 }
 
 type Contact struct {
@@ -50,18 +52,18 @@ type Phone struct {
 }
 
 type LineItem struct {
-	ItemCode    string     `json:"ItemCode"`
-	Description string     `json:"Description"`
-	Quantity    string     `json:"Quantity"`
-	UnitAmount  string     `json:"UnitAmount"`
-	TaxType     string     `json:"TaxType"`
-	TaxAmount   string     `json:"TaxAmount"`
-	LineAmount  string     `json:"LineAmount"`
-	AccountCode string     `json:"AccountCode"`
-	AccountID   *string    `json:"AccountId,omitempty"`
-	Item        *Item      `json:"Item,omitempty"`
-	Tracking    []Tracking `json:"Tracking,omitempty"`
-	LineItemID  *string    `json:"LineItemID,omitempty"`
+	ItemCode    string                    `json:"ItemCode"`
+	Description string                    `json:"Description"`
+	Quantity    *sharedmodels.IntOrString `json:"Quantity"`
+	UnitAmount  *sharedmodels.IntOrString `json:"UnitAmount"`
+	TaxType     string                    `json:"TaxType"`
+	TaxAmount   *sharedmodels.IntOrString `json:"TaxAmount"`
+	LineAmount  *sharedmodels.IntOrString `json:"LineAmount"`
+	AccountCode string                    `json:"AccountCode"`
+	AccountID   *string                   `json:"AccountId,omitempty"`
+	Item        *Item                     `json:"Item,omitempty"`
+	Tracking    []Tracking                `json:"Tracking,omitempty"`
+	LineItemID  *string                   `json:"LineItemID,omitempty"`
 }
 
 type Item struct {
@@ -77,9 +79,9 @@ type Tracking struct {
 }
 
 type Payment struct {
-	Date      string `json:"Date"`
-	Amount    string `json:"Amount"`
-	PaymentID string `json:"PaymentID"`
+	Date      string                    `json:"Date"`
+	Amount    *sharedmodels.IntOrString `json:"Amount"`
+	PaymentID string                    `json:"PaymentID"`
 }
 
 type Invoices struct {
