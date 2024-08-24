@@ -35,8 +35,8 @@ type Contact struct {
 	Addresses      []Address `json:"Addresses,omitempty"`
 	Phones         []Phone   `json:"Phones,omitempty"`
 	UpdatedDateUTC *string   `json:"UpdatedDateUTC,omitempty"`
-	IsSupplier     *string   `json:"IsSupplier,omitempty"`
-	IsCustomer     *string   `json:"IsCustomer,omitempty"`
+	IsSupplier     *bool     `json:"IsSupplier,omitempty"`
+	IsCustomer     *bool     `json:"IsCustomer,omitempty"`
 }
 
 type Address struct {
