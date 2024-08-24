@@ -2,48 +2,48 @@ package sharedmodels
 
 import "encoding/json"
 
-type IntOrString struct {
-	IntValue    int
+type FloatOrString struct {
+	FloatValue  float64
 	StringValue string
-	IsInt       bool
+	IsFloat     bool
 }
 
-func (i *IntOrString) UnmarshalJSON(data []byte) error {
+func (f *FloatOrString) UnmarshalJSON(data []byte) error {
 	if data[0] == '"' {
 		var str string
 		if err := json.Unmarshal(data, &str); err != nil {
 			return err
 		}
-		i.StringValue = str
-		i.IsInt = false
+		f.StringValue = str
+		f.IsFloat = false
 	} else {
-		var intValue int
-		if err := json.Unmarshal(data, &intValue); err != nil {
+		var floatValue float64
+		if err := json.Unmarshal(data, &floatValue); err != nil {
 			return err
 		}
-		i.IntValue = intValue
-		i.IsInt = true
+		f.FloatValue = floatValue
+		f.IsFloat = true
 	}
 	return nil
 }
 
-func (i IntOrString) MarshalJSON() ([]byte, error) {
-	if i.IsInt {
-		return json.Marshal(i.IntValue)
+func (f FloatOrString) MarshalJSON() ([]byte, error) {
+	if f.IsFloat {
+		return json.Marshal(f.FloatValue)
 	}
-	return json.Marshal(i.StringValue)
+	return json.Marshal(f.StringValue)
 }
 
-func NewIntString(value int) IntOrString {
-	return IntOrString{
-		IntValue: value,
-		IsInt:    true,
+func NewFloatOrStringFloat(value float64) FloatOrString {
+	return FloatOrString{
+		FloatValue: value,
+		IsFloat:    true,
 	}
 }
 
-func NewString(value string) IntOrString {
-	return IntOrString{
+func NewFloatOrStringString(value string) FloatOrString {
+	return FloatOrString{
 		StringValue: value,
-		IsInt:       false,
+		IsFloat:     false,
 	}
 }
