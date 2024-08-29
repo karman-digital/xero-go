@@ -2,10 +2,11 @@ package webhookmodels
 
 import (
 	"encoding/json"
+	"strings"
 	"time"
 )
 
-const xeroTimeFormat = "2006-01-02T15:04:05.000"
+const xeroTimeFormat = "2006-01-02T15:04:05"
 
 type Event struct {
 	ResourceUrl   string      `json:"resourceUrl"`
@@ -30,6 +31,10 @@ func (t *xeroUtcDate) UnmarshalJSON(b []byte) error {
 	str := string(b)
 	if len(str) >= 2 && str[0] == '"' && str[len(str)-1] == '"' {
 		str = str[1 : len(str)-1]
+	}
+	dotIndex := strings.Index(str, ".")
+	if dotIndex != -1 {
+		str = str[:dotIndex]
 	}
 	parsedTime, err := time.Parse(xeroTimeFormat, str)
 	if err != nil {
