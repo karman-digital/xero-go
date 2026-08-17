@@ -9,6 +9,7 @@ type GetOptions struct {
 	Where           string
 	Order           string
 	Page            int
+	PageSize        int
 	SummaryOnly     bool
 	IncludeArchived bool
 	SearchTerm      string

@@ -21,6 +21,7 @@ type Contact struct {
 	IsSupplier                bool            `json:"IsSupplier,omitempty"`
 	IsCustomer                bool            `json:"IsCustomer,omitempty"`
 	DefaultCurrency           string          `json:"DefaultCurrency,omitempty"`
+	MergedToContactID         string          `json:"MergedToContactID,omitempty"`
 }
 
 type Address struct {

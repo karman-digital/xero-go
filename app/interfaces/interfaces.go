@@ -13,6 +13,7 @@ type Invoices interface {
 type Contacts interface {
 	CreateContact(body contactsmodels.Contacts) (contactsmodels.Contacts, error)
 	GetContact(id string) (contactsmodels.Contacts, error)
+	GetContacts(options contactsmodels.GetOptions) (contactsmodels.Contacts, error)
 }
 
 type Validator interface {
