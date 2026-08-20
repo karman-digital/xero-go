@@ -3,6 +3,8 @@ package invoices
 import (
 	"encoding/json"
 	"net/http"
+	"net/url"
+	"strconv"
 
 	"github.com/karman-digital/xero-go/api/shared"
 	xeroerrors "github.com/karman-digital/xero-go/app/errors"
@@ -29,4 +31,30 @@ func (s *InvoicesService) GetInvoice(invoiceID string) (invoicesmodels.Invoices,
 	}
 	defer resp.Body.Close()
 	return shared.HandleInvoiceResponse(*resp)
+}
+
+func (s *InvoicesService) GetInvoices(options invoicesmodels.GetOptions) (invoicesmodels.Invoices, error) {
+	resp, err := s.SendRequest(http.MethodGet, getInvoicesPath(options), nil)
+	if err != nil {
+		return invoicesmodels.Invoices{}, xeroerrors.New(xeroerrors.ErrApiError, err.Error())
+	}
+	defer resp.Body.Close()
+	return shared.HandleInvoiceResponse(*resp)
+}
+
+func getInvoicesPath(options invoicesmodels.GetOptions) string {
+	query := url.Values{}
+	if options.Page > 0 {
+		query.Set("page", strconv.Itoa(options.Page))
+	}
+	if options.PageSize > 0 {
+		query.Set("pageSize", strconv.Itoa(options.PageSize))
+	}
+	if options.Where != "" {
+		query.Set("where", options.Where)
+	}
+	if len(query) == 0 {
+		return "/Invoices"
+	}
+	return "/Invoices?" + query.Encode()
 }

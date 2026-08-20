@@ -8,6 +8,7 @@ import (
 type Invoices interface {
 	CreateInvoice(body invoicesmodels.Invoices) (invoicesmodels.Invoices, error)
 	GetInvoice(id string) (invoicesmodels.Invoices, error)
+	GetInvoices(options invoicesmodels.GetOptions) (invoicesmodels.Invoices, error)
 }
 
 type Contacts interface {

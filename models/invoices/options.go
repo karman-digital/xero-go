@@ -11,6 +11,7 @@ type GetOptions struct {
 	Where          string
 	Order          string
 	Page           int
+	PageSize       int
 	SummaryOnly    bool
 	SearchTerm     string
 	CreatedByMyApp bool
