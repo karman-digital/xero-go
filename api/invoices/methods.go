@@ -53,6 +53,9 @@ func getInvoicesPath(options invoicesmodels.GetOptions) string {
 	if options.Where != "" {
 		query.Set("where", options.Where)
 	}
+	if options.Order != "" {
+		query.Set("order", options.Order)
+	}
 	if options.SummaryOnly {
 		query.Set("summaryOnly", "true")
 	}

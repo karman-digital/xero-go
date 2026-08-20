@@ -13,9 +13,10 @@ func TestGetInvoicesPath(t *testing.T) {
 		Page:        2,
 		PageSize:    250,
 		Where:       `Type=="ACCREC"`,
+		Order:       "InvoiceID ASC",
 		SummaryOnly: true,
 	})
-	want := "/Invoices?page=2&pageSize=250&summaryOnly=true&where=Type%3D%3D%22ACCREC%22"
+	want := "/Invoices?order=InvoiceID+ASC&page=2&pageSize=250&summaryOnly=true&where=Type%3D%3D%22ACCREC%22"
 	if path != want {
 		t.Fatalf("getInvoicesPath() = %q, want %q", path, want)
 	}
