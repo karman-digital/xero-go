@@ -12,9 +12,10 @@ func TestGetContactsPath(t *testing.T) {
 		Page:            2,
 		PageSize:        250,
 		IncludeArchived: true,
+		Order:           "ContactID ASC",
 		SummaryOnly:     true,
 	})
-	want := "/Contacts?includeArchived=true&page=2&pageSize=250&summaryOnly=true"
+	want := "/Contacts?includeArchived=true&order=ContactID+ASC&page=2&pageSize=250&summaryOnly=true"
 	if path != want {
 		t.Fatalf("getContactsPath() = %q, want %q", path, want)
 	}

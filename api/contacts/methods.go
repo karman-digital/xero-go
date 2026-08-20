@@ -25,6 +25,9 @@ func getContactsPath(options contactsmodels.GetOptions) string {
 	if options.IncludeArchived {
 		query.Set("includeArchived", "true")
 	}
+	if options.Order != "" {
+		query.Set("order", options.Order)
+	}
 	if options.Page > 0 {
 		query.Set("page", strconv.Itoa(options.Page))
 	}
