@@ -1,9 +1,14 @@
 package interfaces
 
 import (
+	accountsmodels "github.com/karman-digital/xero-go/models/accounts"
 	contactsmodels "github.com/karman-digital/xero-go/models/contacts"
 	invoicesmodels "github.com/karman-digital/xero-go/models/invoices"
 )
+
+type Accounts interface {
+	GetAccounts() (accountsmodels.Accounts, error)
+}
 
 type Invoices interface {
 	CreateInvoice(body invoicesmodels.Invoices) (invoicesmodels.Invoices, error)

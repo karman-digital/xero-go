@@ -6,6 +6,7 @@ import (
 )
 
 type ApiClient struct {
+	interfaces.Accounts
 	interfaces.Invoices
 	interfaces.Contacts
 }
