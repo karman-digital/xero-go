@@ -7,7 +7,7 @@ import (
 )
 
 type Accounts interface {
-	GetAccounts() (accountsmodels.Accounts, error)
+	GetAccounts(accountsmodels.GetOptions) (accountsmodels.Accounts, error)
 }
 
 type Invoices interface {

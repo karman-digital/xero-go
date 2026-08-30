@@ -6,6 +6,8 @@ import (
 	"net/http"
 	"strings"
 	"testing"
+
+	accountsmodels "github.com/karman-digital/xero-go/models/accounts"
 )
 
 type fakeSender struct {
@@ -35,11 +37,11 @@ func TestGetAccountsDecodesCompleteResponse(t *testing.T) {
 		]
 	}`)}
 
-	got, err := newAccountsService(sender).GetAccounts()
+	got, err := newAccountsService(sender).GetAccounts(accountsmodels.GetOptions{Where: `Type=="REVENUE"`})
 	if err != nil {
 		t.Fatalf("GetAccounts() error = %v", err)
 	}
-	if sender.method != http.MethodGet || sender.path != "/Accounts" || sender.body != nil {
+	if sender.method != http.MethodGet || sender.path != "/Accounts?where=Type%3D%3D%22REVENUE%22" || sender.body != nil {
 		t.Fatalf("request = %s %s %#v", sender.method, sender.path, sender.body)
 	}
 	if got.ID != "request-1" || got.Status != "OK" || got.ProviderName != "Karman Digital" || got.DateTimeUTC != "2026-08-30T12:00:00Z" {
@@ -58,14 +60,14 @@ func TestGetAccountsDecodesCompleteResponse(t *testing.T) {
 
 func TestGetAccountsRejectsProviderFailure(t *testing.T) {
 	sender := &fakeSender{resp: response(http.StatusBadGateway, `{"ErrorNumber":10,"Message":"provider unavailable"}`)}
-	if _, err := newAccountsService(sender).GetAccounts(); err == nil || !strings.Contains(err.Error(), "xero api error") {
+	if _, err := newAccountsService(sender).GetAccounts(accountsmodels.GetOptions{}); err == nil || !strings.Contains(err.Error(), "xero api error") {
 		t.Fatalf("GetAccounts() error = %v, want Xero API error", err)
 	}
 }
 
 func TestGetAccountsRejectsMalformedResponse(t *testing.T) {
 	sender := &fakeSender{resp: response(http.StatusOK, `{"Accounts":[`)}
-	if _, err := newAccountsService(sender).GetAccounts(); err == nil {
+	if _, err := newAccountsService(sender).GetAccounts(accountsmodels.GetOptions{}); err == nil {
 		t.Fatal("GetAccounts() error = nil, want decode error")
 	}
 }
@@ -73,7 +75,7 @@ func TestGetAccountsRejectsMalformedResponse(t *testing.T) {
 func TestGetAccountsReturnsRequestFailure(t *testing.T) {
 	want := errors.New("network unavailable")
 	sender := &fakeSender{err: want}
-	if _, err := newAccountsService(sender).GetAccounts(); err == nil || !strings.Contains(err.Error(), want.Error()) {
+	if _, err := newAccountsService(sender).GetAccounts(accountsmodels.GetOptions{}); err == nil || !strings.Contains(err.Error(), want.Error()) {
 		t.Fatalf("GetAccounts() error = %v, want request failure", err)
 	}
 }

@@ -5,13 +5,14 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+	"net/url"
 
 	xeroerrors "github.com/karman-digital/xero-go/app/errors"
 	accountsmodels "github.com/karman-digital/xero-go/models/accounts"
 )
 
-func (service *AccountsService) GetAccounts() (accountsmodels.Accounts, error) {
-	response, err := service.sender.SendRequest(http.MethodGet, "/Accounts", nil)
+func (service *AccountsService) GetAccounts(options accountsmodels.GetOptions) (accountsmodels.Accounts, error) {
+	response, err := service.sender.SendRequest(http.MethodGet, getAccountsPath(options), nil)
 	if err != nil {
 		return accountsmodels.Accounts{}, xeroerrors.New(xeroerrors.ErrApiError, err.Error())
 	}
@@ -28,4 +29,15 @@ func (service *AccountsService) GetAccounts() (accountsmodels.Accounts, error) {
 		return accountsmodels.Accounts{}, xeroerrors.New(xeroerrors.ErrInternal, fmt.Sprintf("decode accounts response: %v", err))
 	}
 	return accounts, nil
+}
+
+func getAccountsPath(options accountsmodels.GetOptions) string {
+	query := url.Values{}
+	if options.Where != "" {
+		query.Set("where", options.Where)
+	}
+	if len(query) == 0 {
+		return "/Accounts"
+	}
+	return "/Accounts?" + query.Encode()
 }
