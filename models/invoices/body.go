@@ -60,7 +60,7 @@ type LineItem struct {
 	TaxAmount   *sharedmodels.FloatOrString `json:"TaxAmount"`
 	LineAmount  *sharedmodels.FloatOrString `json:"LineAmount"`
 	AccountCode string                      `json:"AccountCode"`
-	AccountID   *string                     `json:"AccountId,omitempty"`
+	AccountID   *string                     `json:"AccountID,omitempty"`
 	Item        *Item                       `json:"Item,omitempty"`
 	Tracking    []Tracking                  `json:"Tracking,omitempty"`
 	LineItemID  *string                     `json:"LineItemID,omitempty"`
